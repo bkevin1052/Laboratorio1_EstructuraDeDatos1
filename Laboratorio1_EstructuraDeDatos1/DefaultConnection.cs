@@ -11,8 +11,7 @@ namespace Laboratorio1_EstructuraDeDatos1
         private static volatile DefaultConnection Instance;
         private static object syncRoot = new Object();
 
-        public LinkedList<cJugador> Jugadores = new LinkedList<cJugador>();
-        public LinkedList<string> Ids = new LinkedList<string>();
+        public List<Jugador> Jugadores = new List<Jugador>();
 
         public static DefaultConnection getInstance
         {
@@ -31,5 +30,13 @@ namespace Laboratorio1_EstructuraDeDatos1
                 return Instance;
             }
         }
+
+        public int IDActual { get; set; }
+
+        private DefaultConnection()
+        {
+            IDActual = 0;
+        }
+
     }
 }

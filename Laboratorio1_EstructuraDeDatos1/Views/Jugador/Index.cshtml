@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Laboratorio1_EstructuraDeDatos1.Models.cJugador>
+﻿@model IEnumerable<Laboratorio1_EstructuraDeDatos1.Models.Jugador>
 
 @{
     ViewBag.Title = "Index";
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.CompensacionGarantizada)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.jugadorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.jugadorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.jugadorID })
         </td>
     </tr>
 }

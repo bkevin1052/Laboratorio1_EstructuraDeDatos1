@@ -5,8 +5,10 @@ using System.Web;
 
 namespace Laboratorio1_EstructuraDeDatos1.Models
 {
-    public class cJugador
+    public class Jugador
     {
+        public int jugadorID { get; set; }
+
         public string Club { get; set; }
 
         public string Apellido { get; set; }
