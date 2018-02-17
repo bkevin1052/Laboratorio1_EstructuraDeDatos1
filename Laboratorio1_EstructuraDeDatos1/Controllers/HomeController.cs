@@ -8,6 +8,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
 {
     public class HomeController : Controller
     {
+        //Este es un comentario :v
         public ActionResult Index()
         {
             return View();
