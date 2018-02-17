@@ -45,7 +45,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
                 return View();
             }
         }
-
+        //FUNCIONALIDAD EDITAR
         // GET: Jugador/Edit/5
         public ActionResult Edit(int id)
         {
@@ -80,7 +80,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
                 return View("Index");
             }
         }
-
+        //FUNCIONALIDAD ELIMINAR
         // GET: Jugador/Delete/5
         public ActionResult Delete(int id)
         {
