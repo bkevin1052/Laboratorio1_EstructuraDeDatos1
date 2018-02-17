@@ -11,8 +11,14 @@ namespace Laboratorio1_EstructuraDeDatos1.DBContext
         private static volatile DefaultConnection Instance;
         private static object syncRoot = new Object();
 
-        public LinkedList<cJugador> Jugadores = new LinkedList<cJugador>();
-        public LinkedList<string> Ids = new LinkedList<string>();
+        public List<Jugador> Jugadores = new List<Jugador>();
+
+        public int IDActual { get; set; }
+
+        private DefaultConnection()
+        {
+            IDActual = 0;
+        }
 
         public static DefaultConnection getInstance
         {

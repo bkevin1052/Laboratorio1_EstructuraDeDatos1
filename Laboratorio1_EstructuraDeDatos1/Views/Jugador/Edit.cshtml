@@ -1,4 +1,4 @@
-﻿@model Laboratorio1_EstructuraDeDatos1.Models.cJugador
+﻿@model Laboratorio1_EstructuraDeDatos1.Models.Jugador
 
 @{
     ViewBag.Title = "Edit";
@@ -12,9 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>cJugador</h4>
+        <h4>Jugador</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.jugadorID)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Club, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

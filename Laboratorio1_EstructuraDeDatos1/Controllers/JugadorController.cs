@@ -12,7 +12,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
     public class JugadorController : Controller
     {
         DefaultConnection db = DefaultConnection.getInstance;
-        // GET: Jugador
+        // GET: /Jugador/Index
         public ActionResult Index()
         {
             return View(db.Jugadores.ToList());
@@ -21,7 +21,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
         // GET: Jugador/Create
@@ -32,12 +32,12 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
 
         // POST: Jugador/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Club,Apellido,Nombre,Posicion,SalarioBase,CompensacionGarantizada")]cJugador jugador)
+        public ActionResult Create(Jugador jugador)
         {
             try
             {
                 // TODO: Add insert logic here
-                db.Jugadores.AddLast(jugador);
+                db.Jugadores.Add(jugador);
                 return RedirectToAction("Index");
             }
             catch
@@ -49,29 +49,42 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
         // POST: Jugador/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Club,Apellido,Nombre,Posicion,SalarioBase,CompensacionGarantizada,JugadorID")]Jugador jugador)
         {
             try
             {
-                // TODO: Add update logic here
+                Jugador jugadorBuscado = db.Jugadores.Find(x => x.jugadorID == jugador.jugadorID);
+
+                if (jugadorBuscado == null)
+                {
+                    return HttpNotFound();
+                }
+
+                jugadorBuscado.Nombre = jugador.Nombre;
+                jugadorBuscado.Apellido = jugador.Apellido;
+                jugadorBuscado.Club = jugador.Club;
+                jugadorBuscado.SalarioBase = jugador.SalarioBase;
+                jugadorBuscado.Posicion = jugador.Posicion;
+                jugadorBuscado.CompensacionGarantizada = jugador.CompensacionGarantizada;
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
 
         // GET: Jugador/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
         // POST: Jugador/Delete/5
@@ -81,7 +94,8 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                Jugador jugador = db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault();
+                db.Jugadores.Remove(jugador);
                 return RedirectToAction("Index");
             }
             catch
