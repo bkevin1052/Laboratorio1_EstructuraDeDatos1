@@ -9,7 +9,10 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
     public class JugadorController : Controller
     {
         DefaultConnection db = DefaultConnection.getInstance;
-        string ruta = @"C:\Users\kevin\Desktop\logs.txt";
+        /*Permite obtener el nombre de usuario de la computadora
+         * Se espera que funcione en cualquier computadora
+         */
+        string ruta = @"C:\Users\" + Environment.UserName + @"\Desktop\logs.txt";
         // GET: /Jugador/Index
         public ActionResult Index()
         {
@@ -20,7 +23,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Details/5
         public ActionResult Details(int id)
         {
-            logWriter("Visito en DETALLES del jugador", ruta, false);
+            logWriter("Visito en DETALLES DEL JUGADOR", ruta, false);
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
@@ -51,7 +54,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Edit/5
         public ActionResult Edit(int id)
         {
-            logWriter("Visito en EDITAR jugador", ruta, false);
+            logWriter("Visito en EDITAR JUGADOR", ruta, false);
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
@@ -87,7 +90,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Delete/5
         public ActionResult Delete(int id)
         {
-            logWriter("Visito ELIMINAR UN jugador", ruta, false);
+            logWriter("Visito ELIMINAR UN JUGADOR", ruta, false);
 
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
@@ -118,7 +121,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         private void logWriter(string contenido, string rutaArchivo, bool sobrescribir = true)
         {
             StreamWriter logReporter = new StreamWriter(rutaArchivo, !sobrescribir);
-            logReporter.WriteLine(contenido + " " + DateTime.Now);
+            logReporter.WriteLine(contenido + "; " + DateTime.Now);
             logReporter.Close();
         }
 
