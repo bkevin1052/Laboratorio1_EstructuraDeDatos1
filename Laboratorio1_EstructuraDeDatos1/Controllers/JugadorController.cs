@@ -1,32 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Laboratorio1_EstructuraDeDatos1.Models;
+using System;
+using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Laboratorio1_EstructuraDeDatos1.Models;
-using Laboratorio1_EstructuraDeDatos1.DBContext;
-using System.Net;
 
 namespace Laboratorio1_EstructuraDeDatos1.Controllers
 {
     public class JugadorController : Controller
     {
         DefaultConnection db = DefaultConnection.getInstance;
+        string ruta = @"C:\Users\kevin\Desktop\logs.txt";
         // GET: /Jugador/Index
         public ActionResult Index()
         {
+            logWriter("Visito en INICIO", ruta, false);
             return View(db.Jugadores.ToList());
         }
 
         // GET: Jugador/Details/5
         public ActionResult Details(int id)
         {
+            logWriter("Visito en DETALLES del jugador", ruta, false);
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
         // GET: Jugador/Create
         public ActionResult Create()
         {
+            logWriter("Visito en CREAR UN JUGADOR", ruta, false);
+
             return View();
         }
 
@@ -49,6 +51,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Edit/5
         public ActionResult Edit(int id)
         {
+            logWriter("Visito en EDITAR jugador", ruta, false);
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
@@ -84,6 +87,8 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         // GET: Jugador/Delete/5
         public ActionResult Delete(int id)
         {
+            logWriter("Visito ELIMINAR UN jugador", ruta, false);
+
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
@@ -103,5 +108,19 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
                 return View();
             }
         }
+
+        /// <summary>
+        /// Funcion que permite agregar logs de la acciones realizada por el usuario dentro del programa
+        /// </summary>
+        /// <param name="contenido">Acciones realizadas por el usuario</param>
+        /// <param name="rutaArchivo"> ruta del archivo en la computadora</param>
+        /// <param name="sobrescribir">no sobreescribir</param>
+        private void logWriter(string contenido, string rutaArchivo, bool sobrescribir = true)
+        {
+            StreamWriter logReporter = new StreamWriter(rutaArchivo, !sobrescribir);
+            logReporter.WriteLine(contenido + " " + DateTime.Now);
+            logReporter.Close();
+        }
+
     }
 }
