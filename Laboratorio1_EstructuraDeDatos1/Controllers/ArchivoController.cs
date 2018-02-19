@@ -124,7 +124,8 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
                         {
                             db.Jugadores.Add(new Jugador
                             {
-                                Club = row.Split(',')[0],
+                                jugadorID = ++db.IDActual,
+                            Club = row.Split(',')[0],
                                 Apellido = row.Split(',')[1],
                                 Nombre = row.Split(',')[2],
                                 Posicion = row.Split(',')[3],
