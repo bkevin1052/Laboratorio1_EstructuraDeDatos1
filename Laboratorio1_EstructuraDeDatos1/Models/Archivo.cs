@@ -20,6 +20,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Models
             {
                 this.error = ex;
             }
+
         }
 
     }
