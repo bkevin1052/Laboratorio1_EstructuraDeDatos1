@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web;
 
 namespace Laboratorio1_EstructuraDeDatos1.Controllers
 {
@@ -124,6 +125,5 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
             logReporter.WriteLine(contenido + "; " + DateTime.Now);
             logReporter.Close();
         }
-
     }
 }
