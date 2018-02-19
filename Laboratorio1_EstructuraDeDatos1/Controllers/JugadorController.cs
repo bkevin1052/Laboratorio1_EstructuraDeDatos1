@@ -43,7 +43,6 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
             try
             {
                 // TODO: Add insert logic here
-                jugador.jugadorID = ++db.IDActual;
                 db.Jugadores.Add(jugador);
                 return RedirectToAction("Index");
             }
@@ -54,17 +53,10 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         }
         //FUNCIONALIDAD EDITAR
         // GET: Jugador/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             logWriter("Visito en EDITAR JUGADOR", ruta, false);
-            Jugador jugadorBuscado = db.Jugadores.Find(x => x.jugadorID == id);
-
-            if (jugadorBuscado == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(jugadorBuscado);
+            return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
         // POST: Jugador/Edit/5
@@ -97,15 +89,10 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         }
         //FUNCIONALIDAD ELIMINAR
         // GET: Jugador/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             logWriter("Visito ELIMINAR UN JUGADOR", ruta, false);
-            Jugador jugadorBuscado = db.Jugadores.Find(x => x.jugadorID == id);
 
-            if (jugadorBuscado == null)
-            {
-                return HttpNotFound();
-            }
             return View(db.Jugadores.Where(x => x.jugadorID == id).FirstOrDefault());
         }
 
