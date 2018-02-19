@@ -13,7 +13,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         /*Permite obtener el nombre de usuario de la computadora
          * Se espera que funcione en cualquier computadora
          */
-        string ruta = @"C:\Users\" + Environment.UserName + @"\Desktop\logs.txt";
+        public static string ruta = @"C:\Users\" + Environment.UserName + @"\Desktop\logs.txt";
         // GET: /Jugador/Index
         public ActionResult Index()
         {
@@ -132,7 +132,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         /// <param name="contenido">Acciones realizadas por el usuario</param>
         /// <param name="rutaArchivo"> ruta del archivo en la computadora</param>
         /// <param name="sobrescribir">no sobreescribir</param>
-        private void logWriter(string contenido, string rutaArchivo, bool sobrescribir = true)
+        public static void logWriter(string contenido, string rutaArchivo, bool sobrescribir = true)
         {
             StreamWriter logReporter = new StreamWriter(rutaArchivo, !sobrescribir);
             logReporter.WriteLine(contenido + "; " + DateTime.Now);
