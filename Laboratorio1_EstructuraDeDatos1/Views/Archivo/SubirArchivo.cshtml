@@ -14,10 +14,10 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+@*<head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
-</head>
+</head>*@
 <body>
     @using (Html.BeginForm("SubirArchivo", "Archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -52,19 +52,20 @@
             </tr>
             @foreach (Jugador jugador in Model)
     {
-        <tr>
-            <td>@jugador.Club</td>
-            <td>@jugador.Apellido</td>
-            <td>@jugador.Nombre</td>
-            <td>@jugador.Posicion</td>
-            <td>@jugador.SalarioBase</td>
-            <td>@jugador.CompensacionGarantizada</td>
-        </tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Jugador", new{ id = jugador.jugadorID }, null) |
-            @Html.ActionLink("Details", "Details", "Jugador", new { id = jugador.jugadorID }, null) |
-            @Html.ActionLink("Delete", "Delete", "Jugador", new { id = jugador.jugadorID }, null)
-        </td>
+            <tr>
+                <td>@jugador.Club</td>
+                <td>@jugador.Apellido</td>
+                <td>@jugador.Nombre</td>
+                <td>@jugador.Posicion</td>
+                <td>@jugador.SalarioBase</td>
+                <td>@jugador.CompensacionGarantizada</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Jugador", new { id = jugador.jugadorID }, null) |
+                    @Html.ActionLink("Details", "Details", "Jugador", new { id = jugador.jugadorID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Jugador", new { id = jugador.jugadorID }, null)
+                </td>
+            </tr>
+
 }
         </table>
 
