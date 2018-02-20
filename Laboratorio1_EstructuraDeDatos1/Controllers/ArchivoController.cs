@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laboratorio1_EstructuraDeDatos1.Models;
+using Laboratorio1_EstructuraDeDatos1.Controllers;
 
 namespace Laboratorio1_EstructuraDeDatos1.Controllers
 {
@@ -99,6 +100,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         [HttpPost]
         public ActionResult SubirArchivo(HttpPostedFileBase file)
         {
+            JugadorController.logWriter("Visito en CARGAR ARCHIVO",JugadorController.ruta,true);
             string filePath = string.Empty;
             Archivo modelo = new Archivo();
             if (file != null)
