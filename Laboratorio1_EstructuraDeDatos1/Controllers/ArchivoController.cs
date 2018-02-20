@@ -146,13 +146,13 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
             return View(db.Jugadores);
         }
 
-        //GET SubirArchivo
+        //GET EliminarJugador
         public ActionResult EliminarJugadores()
         {
             return View();
         }
 
-        //Post SubirArchivo
+        //Post EliminarJugador
         [HttpPost]
         public ActionResult EliminarJugadores(HttpPostedFileBase file)
         {
@@ -179,25 +179,27 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
                     {
                         if (!string.IsNullOrEmpty(row))
                         {
-                            foreach (Jugador jugador in db.Jugadores)
+
+                            for (int i = 0; i < db.Jugadores.Count; i++)
                             {
-                                if (jugador.Club == row.Split(',')[0] && jugador.Apellido == row.Split(',')[1] &&
-                                    jugador.Nombre == row.Split(',')[2] &&
-                                    jugador.Posicion == row.Split(',')[3] &&
-                                    jugador.SalarioBase == Convert.ToDouble(row.Split(',')[4]) &&
-                                    jugador.CompensacionGarantizada == Convert.ToDouble(row.Split(',')[5]))
+                                if (db.Jugadores[i].Club == row.Split(',')[0] &&
+                                    db.Jugadores[i].Apellido == row.Split(',')[1] &&
+                                    db.Jugadores[i].Nombre == row.Split(',')[2] &&
+                                    db.Jugadores[i].Posicion == row.Split(',')[3] &&
+                                    db.Jugadores[i].SalarioBase == Convert.ToDouble(row.Split(',')[4]) &&
+                                    db.Jugadores[i].CompensacionGarantizada == Convert.ToDouble(row.Split(',')[5]))
                                 {
-                                    db.Jugadores.Remove(jugador);
+                                    db.Jugadores.RemoveAt(i);
+                                    i--;
                                 }
-                            }
+                            } 
                         }
                     }
                 }
 
                 modelo.SubirArchivo(ruta, file);
 
-                ViewBag.Error = modelo.error;
-                ViewBag.Correcto = modelo.Confirmacion;
+               
             }
             return View(db.Jugadores);
         }
