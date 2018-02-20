@@ -143,5 +143,61 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
             }
             return View(db.Jugadores);
         }
+
+        //GET SubirArchivo
+        public ActionResult EliminarJugadores()
+        {
+            return View();
+        }
+
+        //Post SubirArchivo
+        [HttpPost]
+        public ActionResult EliminarJugadores(HttpPostedFileBase file)
+        {
+            string filePath = string.Empty;
+            Archivo modelo = new Archivo();
+            if (file != null)
+            {
+                string ruta = Server.MapPath("~/Temp/");
+
+                if (!Directory.Exists(ruta))
+                {
+                    Directory.CreateDirectory(ruta);
+                }
+
+                filePath = ruta + Path.GetFileName(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                file.SaveAs(filePath);
+
+                string csvData = System.IO.File.ReadAllText(filePath);
+
+                foreach (string row in csvData.Split('\n'))
+                {
+                    if (!(row == "club,last_name,first_name,position,base_salary,guaranteed_compensation"))
+                    {
+                        if (!string.IsNullOrEmpty(row))
+                        {
+                            foreach (Jugador jugador in db.Jugadores)
+                            {
+                                if (jugador.Club == row.Split(',')[0] && jugador.Apellido == row.Split(',')[1] &&
+                                    jugador.Nombre == row.Split(',')[2] &&
+                                    jugador.Posicion == row.Split(',')[3] &&
+                                    jugador.SalarioBase == Convert.ToDouble(row.Split(',')[4]) &&
+                                    jugador.CompensacionGarantizada == Convert.ToDouble(row.Split(',')[5]))
+                                {
+                                    db.Jugadores.Remove(jugador);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                modelo.SubirArchivo(ruta, file);
+
+                ViewBag.Error = modelo.error;
+                ViewBag.Correcto = modelo.Confirmacion;
+            }
+            return View(db.Jugadores);
+        }
     }
 }
