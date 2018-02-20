@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<input type="button" value="Eliminar por archivo" onclick="location.href='@Url.Action("EliminarJugadores", "Archivo" )'" />
 <table class="table">
     <tr>
         <th>
@@ -32,32 +33,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Club)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Posicion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalarioBase)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompensacionGarantizada)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.jugadorID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.jugadorID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.jugadorID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Club)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posicion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalarioBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompensacionGarantizada)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.jugadorID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.jugadorID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.jugadorID })
+            </td>
+        </tr>
+    }
 
 </table>

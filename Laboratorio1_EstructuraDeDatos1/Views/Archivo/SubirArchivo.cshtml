@@ -28,6 +28,7 @@
     @if (Model != null && Model.Count() > 0)
     {
         <hr />
+        <input type="button" value="Eliminar por archivo" onclick="location.href='@Url.Action("EliminarJugadores", "Archivo" )'" />
         <table class="table">
             <tr>
                 <th>
@@ -51,22 +52,22 @@
                 <th></th>
             </tr>
             @foreach (Jugador jugador in Model)
-    {
-            <tr>
-                <td>@jugador.Club</td>
-                <td>@jugador.Apellido</td>
-                <td>@jugador.Nombre</td>
-                <td>@jugador.Posicion</td>
-                <td>@jugador.SalarioBase</td>
-                <td>@jugador.CompensacionGarantizada</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Jugador", new { id = jugador.jugadorID }, null) |
-                    @Html.ActionLink("Details", "Details", "Jugador", new { id = jugador.jugadorID }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Jugador", new { id = jugador.jugadorID }, null)
-                </td>
-            </tr>
+            {
+                <tr>
+                    <td>@jugador.Club</td>
+                    <td>@jugador.Apellido</td>
+                    <td>@jugador.Nombre</td>
+                    <td>@jugador.Posicion</td>
+                    <td>@jugador.SalarioBase</td>
+                    <td>@jugador.CompensacionGarantizada</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Jugador", new { id = jugador.jugadorID }, null) |
+                        @Html.ActionLink("Details", "Details", "Jugador", new { id = jugador.jugadorID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Jugador", new { id = jugador.jugadorID }, null)
+                    </td>
+                </tr>
 
-}
+            }
         </table>
 
 

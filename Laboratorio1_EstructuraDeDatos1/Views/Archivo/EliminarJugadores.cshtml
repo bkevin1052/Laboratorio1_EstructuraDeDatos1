@@ -1,7 +1,78 @@
 ﻿
+@using Laboratorio1_EstructuraDeDatos1.Models
+
 @{
     ViewBag.Title = "EliminarJugadores";
+
+}
+<h2>@ViewBag.Title.</h2>
+@model IEnumerable<Jugador>
+@{
+
 }
 
-<h2>EliminarJugadores</h2>
+<!DOCTYPE html>
+
+<html>
+@*<head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>*@
+<body>
+    @using (Html.BeginForm("EliminarJugadores", "Archivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" value="Import" />
+    }
+
+    @if (Model != null && Model.Count() > 0)
+    {
+
+        <hr />
+        
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Club)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posicion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalarioBase)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompensacionGarantizada)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (Jugador jugador in Model)
+            {
+                <tr>
+                    <td>@jugador.Club</td>
+                    <td>@jugador.Apellido</td>
+                    <td>@jugador.Nombre</td>
+                    <td>@jugador.Posicion</td>
+                    <td>@jugador.SalarioBase</td>
+                    <td>@jugador.CompensacionGarantizada</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Jugador", new { id = jugador.jugadorID }, null) |
+                        @Html.ActionLink("Details", "Details", "Jugador", new { id = jugador.jugadorID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Jugador", new { id = jugador.jugadorID }, null)
+                    </td>
+                </tr>
+
+            }
+        </table>
+
+
+    }
+</body>
+</html>
 
