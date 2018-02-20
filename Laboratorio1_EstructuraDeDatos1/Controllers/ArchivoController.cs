@@ -156,6 +156,7 @@ namespace Laboratorio1_EstructuraDeDatos1.Controllers
         [HttpPost]
         public ActionResult EliminarJugadores(HttpPostedFileBase file)
         {
+            JugadorController.logWriter("Visito en ELIMINAR POR ARCHIVO", JugadorController.ruta, true);
             string filePath = string.Empty;
             Archivo modelo = new Archivo();
             if (file != null)
